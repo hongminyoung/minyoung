@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @font-face {
+        font-family: "LeeSeoyun";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202-2@1.0/LeeSeoyun.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+        body{
+            font-family: "LeeSeoyun";
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-image: url("./background.png"); 
+        }
+        .container{
+            width:390px;
+            background-color: #beefff;
+            height:100%;
+        }
+        .photos{
+            margin-top:35px;
+        }
+        .photo_frame{
+            background-color: white;
+            margin:15px 20px;
+            height: 200px;   
+            background-size: cover; 
+            position: relative; /* 기준점 정하기*/
+            cursor:pointer;
+        }
+        .footer{
+            display:flex;
+            flex-direction: column; /*글자를 한줄씩 표시하기 위함*/
+            align-items: center;
+        }
+        .f_title{
+            color:white;
+            font-size: 35px;
+            font-weight: 900;
+        }
+        .f_date{
+            color:white;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        #image1{
+            background-image: url('./snoopy.png');
+        }
+        #image2{
+            background-image: url('./snoopy2.png');
+        }
+        #image3{
+            background-image: url('./snoopy3.png');
+        }
+        .photo_desc{
+            color: white;
+            background-color: black; 
+            width: fit-content; /*안에 있는 글자의 개수에 맞는 너비 */
+            padding: 0 20px; /*위 아래는 고정, 좌측 우측은 20씩 늘리기*/
+            margin-bottom: 10px; 
+            border-radius: 10px;/*경계선을 둥글게*/
+            position: absolute;
+            bottom: 0;
+            transform: translate(-50%);
+            left: 50%;
+            opacity: 0;
+        }
+        .video{
+            width:100%;
+            height:100%;
+        }
+        .showText {
+	        opacity: 0;
+        }
+
+        .hideText {
+	    opacity: 1;
+        transition: opacity 0.5s linear;
+        }    
+    </style>
+    <script>
+        function showText(number) {
+        if (number === 1) {
+            document.querySelector("#desc1").classList.remove("hideText");
+            document.querySelector("#desc1").classList.add("showText");
+        } else if (number === 2) {
+            document.querySelector("#desc2").classList.remove("hideText");
+            document.querySelector("#desc2").classList.add("showText");
+        } else {
+            document.querySelector("#desc3").classList.remove("hideText");
+            document.querySelector("#desc3").classList.add("showText");
+        }
+        }
+
+        // 텍스트가 감춰지는 기능
+        // 1. 몇 번째 사진에서 마우스가 벗어났는지 확인(if문)
+        // 2. 해당 사진을 찾아 shotText class를 지워주고, hideText는 삽입해줌
+        function hideText(number) {
+        if (number === 1) {
+            document.querySelector("#desc1").classList.remove("showText");
+            document.querySelector("#desc1").classList.add("hideText");
+        } else if (number === 2) {
+            document.querySelector("#desc2").classList.remove("showText");
+            document.querySelector("#desc2").classList.add("hideText");
+        } else {
+            document.querySelector("#desc3").classList.remove("showText");
+            document.querySelector("#desc3").classList.add("hideText");
+        }
+        }
+
+        // 클릭 기능
+        // 1. 선택된 사진의 숫자를 가진 텍스트를 alert 형태로 출력해줌
+        function alertText(number) {
+            alert(`${number}번째 추억이에요! 눌러주셔서 감사합니다 :)`);
+        }
+    </script>
+</head> 
+<body>
+    <div class="container">
+        <div class="photos">
+            <div id="image1" class="photo_frame">
+                <span id="desc1" class="photo_desc">
+                    첫번째 이미지 설명
+                </span>
+            </div>
+            <div id="image2" class="photo_frame">
+                <span id="desc2" class="photo_desc">
+                    두번째 이미지 설명
+                </span>
+            </div>
+            <div id="image3" class="photo_frame">
+                <span id="desc3" class="photo_desc">
+                    세번째 이미지 설명
+                </span>
+            </div>
+            <div class="photo_frame">
+                <iframe class="video" src= "https://www.youtube.com/embed/za_CUGp-ud0" frameborder="0" >
+                </iframe>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="f_title">HAPPY DAY</p>
+            <p class="f_date">xxxx.xx.xx</p>
+        </div>
+    </div>
+</body>
+</html>
